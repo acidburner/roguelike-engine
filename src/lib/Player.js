@@ -9,7 +9,12 @@ export class Actor extends Tile {
       height: 10
     }
   }
+}
 
+export class Monster extends Actor {
+  constructor(coords, styles) {
+    super(coords, styles);
+  }
 }
 
 export class Player extends Actor {
@@ -61,6 +66,7 @@ export class Player extends Actor {
 
 export class Movement {
   moveNorth(y) {
+    this.canPlayerMove(--y);
     return --y;
   }
   moveSouth(y) {

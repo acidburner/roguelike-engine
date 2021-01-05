@@ -1,16 +1,17 @@
 import { Drawable } from "./Drawable";
 
 export class Game extends Drawable{
-  constructor(options, player) {
+  constructor(options, entities) {
     super(options);
     this.map = [];
-    this.player = player;
+    this.entities = entities;
     // this.tiles = new Tile();
     this.loadEvents();
     window.requestAnimationFrame(this.start.bind(this));
   }
   getAllTiles(){
     // return this.drawObjects;
+    return this.map;
   }
   addToMap(objects){
     this.map.push(objects);
@@ -27,7 +28,7 @@ export class Game extends Drawable{
   start(){
     this.clearMap();
     this.draw(this.map);
-    this.draw([this.player.getPlayer()]);
+    this.draw(this.entities);
     window.requestAnimationFrame(this.start.bind(this));
   }
 }
