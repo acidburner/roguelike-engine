@@ -12,26 +12,30 @@ export class Actor extends Tile {
 }
 
 export class Monster extends Actor {
-  constructor(coords, styles) {
+  constructor(name, coords, styles) {
     super(coords, styles);
+    this.name = name;
+  }
+  getMonster(){
+    return {
+      tile: this.tile(),
+      name: this.name
+    }
   }
 }
 
 export class Player extends Actor {
-  constructor(coords, styles) {
+  constructor(name, coords, styles) {
     super(coords, styles);
+    this.name = name;
     this.loadEvents();
   }
   getPlayer(){
-    return [{
-      x: this.x,
-      y: this.y,
-      symbol: this.symbol,
-      bg: this.bg,
-      fg: this.fg,
-      isPassable: this.isPassable,
-      isVisible: this.isVisible
-    }]
+    return this.getTile();
+    // return {
+    //   tile: this.getTile(),
+    //   name: this.name
+    // }
   }
   loadEvents() {
     console.log('initializing player controls')
@@ -66,7 +70,7 @@ export class Player extends Actor {
 
 export class Movement {
   moveNorth(y) {
-    this.canPlayerMove(--y);
+    // this.canPlayerMove(--y);
     return --y;
   }
   moveSouth(y) {

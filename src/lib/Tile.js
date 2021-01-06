@@ -9,26 +9,15 @@ export class Tile {
     this.isVisible = isVisible;
   }
   getTile(){
-    return this;
-  }
-  findIntersect(vertIndex, horizIndex, playerY, playerX){
-    //todo somehow map
-    // for(let objects in this.objectMap) {
-    //   if( objects.room ) {
-    //     for( let room in objects.room ) {
-    //       if(room.coords.y)
-    //     }
-    //   }
-    // }
-    return false;
-  }
-  getTileAtCoords(index, x,y) {
-    console.log('tile coords: ', x, y, 'objectmap', this.objectMap);
-    if (!this.objectMap[index] || !this.objectMap[index].room || !this.objectMap[index].room[y] || !this.objectMap[index].room[y][x]) {
-      return false;
-    }
-    else {
-      return this.objectMap[index].room[y][x];
-    }
+    return {
+      x: this.x,
+      y: this.y,
+      symbol: this.symbol,
+      bg: this.bg,
+      fg: this.fg,
+      isPassable: this.isPassable,
+      isVisible: this.isVisible
+    };
   }
 }
+

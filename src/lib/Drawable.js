@@ -25,7 +25,7 @@ export class Drawable {
     //this.context.fontSize = this.getDynamicFontsize() + 'px';
     this.context.font = 'Bold ' + this.fixedFontSize + 'px Helvetica';
   }
-  clearMap(){
+  clearViewport(){
     this.context.clearRect(0, 0, this.options.width, this.options.height);
   }
   getDynamicFontsize(){
@@ -41,9 +41,21 @@ export class Drawable {
     console.log('calculated font size', size)
     return size;
   }
+  // draw(tiles) {
+  //   // this.drawDebugTiles();
+  //   for (let i = 0; i < tiles.length; i++){
+  //     //possibility for full rooms inside tiles, think like z-levels, or floors/portals
+  //     if( tiles[i].length) {
+  //       this.draw(tiles[i]);
+  //     }
+  //     //handle entity
+  //     this.drawTile(tiles[i], this.options.tileSize);
+  //   }
+  // }
   draw(tiles) {
     // this.drawDebugTiles();
     for (let i = 0; i < tiles.length; i++){
+      //possibility for full rooms inside tiles, think like z-levels, or floors/portals
       if( tiles[i].length) {
         this.draw(tiles[i]);
       }

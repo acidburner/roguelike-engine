@@ -1,10 +1,11 @@
 import { Drawable } from "./Drawable";
 
-export class Game extends Drawable{
-  constructor(options, entities) {
+export class Game extends Drawable {
+  constructor(options) {
     super(options);
     this.map = [];
-    this.entities = entities;
+    this.entities = [];
+    this.tiles = []; //tiles will hold the current viewport
     // this.tiles = new Tile();
     this.loadEvents();
     window.requestAnimationFrame(this.start.bind(this));
@@ -19,6 +20,12 @@ export class Game extends Drawable{
   removeFromMap(index){
     this.map = this.map.splice(index, 1);
   }
+  addToEntities(objects){
+    this.entities.push(objects);
+  }
+  removeFromEntities(index){
+    this.entities = this.entities.splice(index, 1);
+  }
   loadEvents() {
     console.log('adding objects to map');
   }
@@ -26,9 +33,10 @@ export class Game extends Drawable{
     console.log(e.keyCode);
   }
   start(){
-    this.clearMap();
+    this.clearViewport();
     this.draw(this.map);
     this.draw(this.entities);
+    // this.draw(this.tiles);
     window.requestAnimationFrame(this.start.bind(this));
   }
 }
